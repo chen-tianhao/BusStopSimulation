@@ -1,5 +1,7 @@
 ﻿using O2DESNet.Distributions;
+using O2DESNet.Standard;
 using System.Reflection;
+using System.Reflection.Metadata;
 
 namespace BusStopSimulation
 {
@@ -10,13 +12,13 @@ namespace BusStopSimulation
             Queue.Add(bus);
             NumberOfBusArrival += 1;
             Console.WriteLine(GlobalConfig.format, FDT(ClockTime), $"{bus} arrives.", NumberOfBusArrival, Queue.Count, NumberOfBusDeparture);
-            TimeSpan ArrivalRandomness = TimeSpan.FromMinutes(DefaultRS.Next(GlobalConfig.ArriveRandomnessLowerBound, GlobalConfig.ArriveRandomnessUpperBound));
-            Schedule(() => Arrive(new Bus()), TimeSpan.FromMinutes(FixedArrivalInterval).Add(ArrivalRandomness));
-
+            OnArrive.Invoke();
             if (Queue.Count > NumberOfBusArrival - NumberOfBusDeparture - 1)
             {
                 Berth();
             }
         }
+
+        public event Action OnArrive;
     }
 }

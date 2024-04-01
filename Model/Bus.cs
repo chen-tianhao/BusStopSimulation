@@ -7,9 +7,9 @@ namespace BusStopSimulation
     {
         int Idx;
 
-        public Bus()
+        public Bus(int idx)
         {
-            Idx = GlobalConfig.BusIdxStartFrom++;
+            Idx = idx;
         }
         public override string ToString()
         {

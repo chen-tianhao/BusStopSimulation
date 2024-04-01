@@ -27,7 +27,14 @@ namespace BusStopSimulation
             Queue = new List<Bus>();
             NumberOfBusArrival = 0;
             NumberOfBusDeparture = 0;
-            Schedule(() => Arrive(new Bus()));
+            Schedule(() => Arrive(new Bus(GlobalConfig.BusIdxStartFrom++)));
+            OnArrive += NextBus;
+        }
+
+        private void NextBus()
+        {
+            TimeSpan ArrivalRandomness = TimeSpan.FromMinutes(DefaultRS.Next(GlobalConfig.ArriveRandomnessLowerBound, GlobalConfig.ArriveRandomnessUpperBound));
+            Schedule(() => Arrive(new Bus(GlobalConfig.BusIdxStartFrom++)), TimeSpan.FromMinutes(FixedArrivalInterval).Add(ArrivalRandomness));
         }
     }
 }

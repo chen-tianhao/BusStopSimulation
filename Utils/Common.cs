@@ -20,10 +20,10 @@ namespace BusStopSimulation
         public static readonly int PlanedArrivalInterval = 10;          // Minutes
         public static readonly int PlanedStopDuration = 1;              // Minutes
 
-        public static readonly int ArriveRandomnessLowerBound = -15;    // Minutes
-        public static readonly int ArriveRandomnessUpperBound = 15;     // Minutes
+        public static readonly int ArriveRandomnessLowerBound = 0;    // Minutes
+        public static readonly int ArriveRandomnessUpperBound = 0;//10;     // Minutes
 
-        public static readonly int BerthRandomnessLowerBound = -1;      // Minutes
-        public static readonly int BerthRandomnessUpperBound = 10;      // Minutes
+        public static readonly int BerthRandomnessLowerBound = 0;      // Minutes
+        public static readonly int BerthRandomnessUpperBound = 0;//30;      // Minutes
     }
 }
